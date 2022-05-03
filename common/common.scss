@@ -1,0 +1,116 @@
+@mixin dropdown() {
+  position: absolute;
+  background-color: $dropdown_background_color;
+  border: 1px solid $dropdown_border_color;
+  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 0.5em;
+  top: var(--header-offset);
+}
+
+.custom-header-links {
+  .top-level-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    @media screen and (max-width: 712px) {
+      display: none;
+    }
+
+    .custom-header-link {
+      color: $main_link_color;
+      padding-block: 1rem;
+      cursor: default;
+
+      &-icon {
+        margin-right: 0.5rem;
+      }
+
+      &-caret {
+        margin-left: 0.5rem;
+        svg {
+          transition: transform 0.25s ease;
+        }
+      }
+
+      &:hover {
+        color: $main_link_hover_color;
+
+        .custom-header-dropdown {
+          transform: scale(1);
+        }
+
+        .custom-header-link-caret svg {
+          transform: rotate(90deg);
+        }
+      }
+
+      &.with-url {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .custom-header-dropdown {
+    @include dropdown;
+    min-width: 200px;
+    max-width: 280px;
+    list-style: none;
+    transform: scale(0);
+    transition: transform 0.2s ease;
+
+    &-link {
+      color: $dropdown_item_color;
+      padding: 0.5em;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      flex-flow: row wrap;
+
+      .custom-header-link-desc {
+        flex-basis: 100%;
+        margin-top: 0.3em;
+        font-size: 0.9em;
+        font-weight: 400;
+      }
+
+      &:hover {
+        color: $dropdown_item_hover_color;
+        background: $dropdown_item_hover_background_color;
+      }
+    }
+  }
+}
+
+// hide on scroll when nav is positioned to left of header:
+.title .custom-header-links.scrolling {
+  display: none;
+}
+
+.mobile-view {
+  .top-level-links {
+    @include dropdown;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .custom-header-dropdown {
+    display: block;
+    position: initial;
+    transform: scale(1);
+    box-shadow: none;
+    margin-top: 1rem;
+    min-width: unset;
+
+    .custom-header-link-desc {
+      display: none;
+    }
+  }
+}

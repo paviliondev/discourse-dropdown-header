@@ -1,0 +1,142 @@
+header_links:
+  description: "Top level header links"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icon": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }'
+dropdown_links:
+  description: "Dropdown Items"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "headerLinkId": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icon": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+  '
+security:
+  description:
+    en: "Add security to a link by allowing only a specific group/trust level to see it"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "headerLinkId": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "description": "Enter the group name"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+  '
+links_position:
+  default: right
+  type: enum
+  choices:
+    - right
+    - left
+  description:
+    en: "Position of the links on the header. (Auto hidden on scroll when position is left)"
+show_caret_icons:
+  default: true
+  type: bool
+  description:
+    en: "Show caret icons on dropdown links"
+main_link_color:
+  default: 'var(--primary-low-mid)'
+  type: string
+  description:
+    en: "Color of main top level links. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+main_link_hover_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of main top level links when hovered over. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+dropdown_background_color:
+  default: 'var(--secondary)'
+  type: string
+  description:
+    en: "The background color of dropdowns. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+dropdown_border_color:
+  default: 'var(--primary-low)'
+  type: string
+  description:
+    en: "The border color of dropdowns (use 'transparent' to hide borders). Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+dropdown_item_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of dropdown links. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+dropdown_item_hover_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of dropdown links when hovered over. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+dropdown_item_hover_background_color:
+  default: 'var(--highlight-medium)'
+  type: string
+  description:
+    en: "Background color of dropdown links when hovered over. Note: it is recommended to use a <a target='_blank' href='https://github.com/discourse/discourse/blob/main/app/assets/stylesheets/color_definitions.scss'>color variable</a> so dark mode will be supported."
+svg_icons:
+  type: "list"
+  list_type: "compact"
+  default: ""
+  description:
+    en: "Add FontAwesome 5 icon classes for each icon used in the list and not already present in the Discourse instance."

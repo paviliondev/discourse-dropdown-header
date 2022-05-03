@@ -1,0 +1,12 @@
+{
+  "about_url": null,
+  "license_url": null,
+  "assets": {},
+  "name": "Dropdown Header",
+  "component": true,
+  "modifiers": {
+    "svg_icons": [
+      "caret-square-down"
+    ]
+  }
+}
