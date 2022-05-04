@@ -10,8 +10,7 @@ This theme component allows you to add links and dropdowns in the header of your
 
 | Title                 | Link                                                                                                 |
 | --------------------- | ---------------------------------------------------------------------------------------------------- |
-| 📰 **Meta Topic**     | [Read Topic](https://meta.discourse.org/t/)                                                          |
-| 🔌 **Base Plugin**    | [Custom Layouts Widget](https://meta.discourse.org/t/custom-layouts-plugin/55208)                    |
+| 📰 **Meta Topic**     | [Read Topic](https://meta.discourse.org/t/dropdown-header/226170)                                    |
 | 👨‍💻 **Author**         | [Keegan George](https://github.com/keegangeorge/)                                                    |
 | #️⃣ **Version**        | `1.0`                                                                                                |
 | ❓ **How to Install** | [Installation Guide](https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682) |
@@ -123,6 +122,11 @@ Note: Even further customizations can be made by adding custom CSS to your Disco
 
 This setting is used to add to add Font Awesome 5 icons to the site's svg icon subset. This may be necessary if using a Font Awesome icon that is not already used in a Discourse site. Adding that Font Awesome icon class to this setting will add it to the site's icon dependency list and allow for it to be used succesfully.
 
-## 🎬 Sample Usage:
+## 🎬 Preview:
 
+**Desktop:**
 ![sample-video](.github/images/sample.gif)
+
+**Mobile:**
+Due to lack of space on mobile, links can be triggered by tapping on the arrow down button.
+![sample-video](.github/images/mobile.png)
