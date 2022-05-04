@@ -1,9 +1,10 @@
 {
-  "about_url": null,
-  "license_url": null,
-  "assets": {},
   "name": "Dropdown Header",
   "component": true,
+  "about_url": "https://github.com/paviliondev/discourse-dropdown-header",
+  "license_url": "https://github.com/paviliondev/discourse-dropdown-header/blob/main/LICENSE.txt",
+  "theme_version": "0.1",
+  "assets": {},
   "modifiers": {
     "svg_icons": [
       "caret-square-down"
