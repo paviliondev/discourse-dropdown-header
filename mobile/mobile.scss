@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .mobile-view {
   .top-level-links {
     @include dropdown;
