@@ -1,0 +1,34 @@
+.mobile-view {
+  .top-level-links {
+    @include dropdown;
+    position: fixed;
+    left: 0;
+    margin: 0;
+    top: var(--header-offset);
+    width: 100%;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    li {
+      width: 100%;
+
+      @media screen and (min-width: 768px) {
+        width: auto;
+      }
+    }
+  }
+
+  .custom-header-dropdown {
+    display: block;
+    position: initial;
+    transform: scale(1);
+    box-shadow: none;
+    margin-top: 1rem;
+    min-width: unset;
+
+    .custom-header-link-desc {
+      display: none;
+    }
+  }
+}

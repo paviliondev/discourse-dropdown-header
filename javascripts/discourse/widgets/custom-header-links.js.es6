@@ -7,10 +7,13 @@ createWidget('custom-header-links', {
 
   buildClasses(attrs) {
     const { scrolling } = attrs;
+    const classes = [];
 
     if (scrolling) {
-      return ['scrolling'];
+      classes.push('scrolling');
     }
+
+    return classes;
   },
 
   transform(attrs) {
@@ -22,7 +25,7 @@ createWidget('custom-header-links', {
   },
 
   defaultState() {
-    const showLinks = !this.site.mobileView;
+    let showLinks = !this.site.mobileView;
     const mobileView = this.site.mobileView;
 
     return {
@@ -37,13 +40,15 @@ createWidget('custom-header-links', {
 
   template: hbs`
     {{#if this.state.mobileView}}
-      {{attach
-        widget="button"
-        attrs=(hash
-          action="showHeaderLinks"
-          icon="caret-square-down"
-        )
-      }}
+      <span class="btn-custom-header-dropdown-mobile">
+        {{attach
+            widget="button"
+            attrs=(hash
+              action="showHeaderLinks"
+              icon="caret-square-down"
+            )
+        }}
+      </span>
     {{/if}}
     {{#if this.state.showLinks}}
       <ul class="top-level-links">

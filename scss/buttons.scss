@@ -1,0 +1,19 @@
+.btn-custom-header-dropdown-mobile {
+  .btn {
+    background: none;
+    font-size: var(--font-up-4);
+    color: var(--header_primary-low-mid);
+
+    .d-icon {
+      color: var(--header_primary-low-mid);
+    }
+
+    &:hover {
+      background: var(--primary-low);
+
+      .d-icon {
+        color: var(--primary-high);
+      }
+    }
+  }
+}
