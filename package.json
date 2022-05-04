@@ -1,6 +1,8 @@
 {
+  "name": "discourse-dropdown-header",
+  "repository": "https://github.com/paviliondev/discourse-dropdown-header/",
   "author": "Keegan George",
-  "license": "MIT",
+  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "eslint-config-discourse": "latest"
   }
