@@ -3,14 +3,14 @@ import { withPluginApi } from 'discourse/lib/plugin-api';
 import DiscourseURL from 'discourse/lib/url';
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
+import buildIconHTML from '../lib/icon-builder';
 
 createWidget('custom-header-link', {
   tagName: 'li.custom-header-link',
   buildKey: (attrs) => `custom-header-link-${attrs.id}`,
 
   html(attrs) {
-    const icon = attrs.icon ? iconNode(attrs.icon) : null;
-    const iconHTML = icon ? h('span.custom-header-link-icon', icon) : '';
+    const iconHTML = buildIconHTML(attrs.icon);
     const titleHTML = h('span.custom-header-link-title', attrs.title);
     const permissions = this.handleLinkPermissions(attrs);
     const allDropdownItems = JSON.parse(settings.dropdown_links);

@@ -61,6 +61,14 @@ dropdown_links:
     }
   }
   '
+icon_source:
+  type: enum
+  default: font_awesome
+  description:
+    en: "Select where to source icons from (image url or font awesome class)"
+  choices:
+  - image_url
+  - font_awesome
 security:
   description:
     en: "Add security to a link by allowing only a specific group/trust level to see it"

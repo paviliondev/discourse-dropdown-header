@@ -1,15 +1,20 @@
-import { iconNode } from 'discourse-common/lib/icon-library';
 import DiscourseURL from 'discourse/lib/url';
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
+import buildIconHTML from '../lib/icon-builder';
 
 createWidget('custom-header-dropdown', {
   tagName: 'li.custom-header-dropdown-link',
   buildKey: (attrs) => `custom-header-dropdown-${attrs.title}`,
 
+  buildAttributes(attrs) {
+    return {
+      title: attrs.title,
+    };
+  },
+
   html(attrs) {
-    const icon = attrs.icon ? iconNode(attrs.icon) : null;
-    const iconHTML = icon ? h('span.custom-header-link-icon', icon) : '';
+    const iconHTML = buildIconHTML(attrs.icon);
     const titleHTML = h('span.custom-header-link-title', attrs.title);
     const descHTML = attrs.description
       ? h('span.custom-header-link-desc', attrs.description)
