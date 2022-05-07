@@ -1,23 +1,26 @@
-import { iconNode } from 'discourse-common/lib/icon-library';
-import { withPluginApi } from 'discourse/lib/plugin-api';
-import DiscourseURL from 'discourse/lib/url';
-import { createWidget } from 'discourse/widgets/widget';
-import { h } from 'virtual-dom';
-import buildIconHTML from '../lib/icon-builder';
+import { iconNode } from "discourse-common/lib/icon-library";
+import { withPluginApi } from "discourse/lib/plugin-api";
+import DiscourseURL from "discourse/lib/url";
+import { createWidget } from "discourse/widgets/widget";
+import { h } from "virtual-dom";
+import buildIconHTML from "../lib/icon-builder";
 
-createWidget('custom-header-link', {
-  tagName: 'li.custom-header-link',
+createWidget("custom-header-link", {
+  tagName: "li.custom-header-link",
   buildKey: (attrs) => `custom-header-link-${attrs.id}`,
 
   html(attrs) {
     const iconHTML = buildIconHTML(attrs.icon);
-    const titleHTML = h('span.custom-header-link-title', attrs.title);
+    const titleHTML = h("span.custom-header-link-title", attrs.title);
     const permissions = this.handleLinkPermissions(attrs);
-    const allDropdownItems = JSON.parse(settings.dropdown_links);
+    const allDropdownItems = settings.dropdown_links
+      ? JSON.parse(settings.dropdown_links)
+      : [];
     const dropdownLinks = allDropdownItems.filter(
       (d) => d.headerLinkId === attrs.id
     );
 
+    console.log(permissions);
     if (!permissions) {
       return;
     }
@@ -25,14 +28,14 @@ createWidget('custom-header-link', {
     const dropdownItems = [];
 
     dropdownLinks.forEach((link) => {
-      dropdownItems.push(this.attach('custom-header-dropdown', link));
+      dropdownItems.push(this.attach("custom-header-dropdown", link));
     });
 
     const hasDropdown = dropdownItems.length > 0 ? true : false;
 
     const dropdownHTML = hasDropdown
-      ? h('ul.custom-header-dropdown', dropdownItems)
-      : '';
+      ? h("ul.custom-header-dropdown", dropdownItems)
+      : "";
 
     const contents = [
       iconHTML,
@@ -53,23 +56,27 @@ createWidget('custom-header-link', {
     const classes = [];
 
     if (attrs.url) {
-      classes.push('with-url');
+      classes.push("with-url");
     }
 
     if (attrs.hasDropdown) {
-      classes.push('has-dropdown');
+      classes.push("has-dropdown");
     }
 
     return classes;
   },
 
   handleLinkPermissions(attrs) {
+    if (!settings.security) {
+      return true;
+    }
+
     const permissions = JSON.parse(settings.security);
     const getPermissions = permissions
       .filter((p) => p.headerLinkId === attrs.id)
       .map((p) => p.title);
 
-    const currentUser = withPluginApi('1.2.0', (api) => {
+    const currentUser = withPluginApi("1.2.0", (api) => {
       return api.getCurrentUser();
     });
 
@@ -99,7 +106,7 @@ createWidget('custom-header-link', {
       return;
     }
 
-    return h('span.custom-header-link-caret', iconNode('caret-down'));
+    return h("span.custom-header-link-caret", iconNode("caret-down"));
   },
 
   click() {
