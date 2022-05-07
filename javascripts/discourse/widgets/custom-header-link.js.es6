@@ -20,7 +20,6 @@ createWidget("custom-header-link", {
       (d) => d.headerLinkId === attrs.id
     );
 
-    console.log(permissions);
     if (!permissions) {
       return;
     }
