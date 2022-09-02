@@ -54,6 +54,7 @@
     list-style: none;
     transform: scale(0);
     transition: transform 0.2s ease;
+    transition-delay: 0.3s;
 
     &-link {
       color: $dropdown_item_color;
@@ -73,6 +74,7 @@
       &:hover {
         color: $dropdown_item_hover_color;
         background: $dropdown_item_hover_background_color;
+        transition-delay: 0s;
       }
     }
   }
