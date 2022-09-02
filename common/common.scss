@@ -34,6 +34,7 @@
 
         .custom-header-dropdown {
           transform: scale(1);
+          transition-delay: 0s;
         }
 
         .custom-header-link-caret svg {
@@ -74,7 +75,6 @@
       &:hover {
         color: $dropdown_item_hover_color;
         background: $dropdown_item_hover_background_color;
-        transition-delay: 0s;
       }
     }
   }
