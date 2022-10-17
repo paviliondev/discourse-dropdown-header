@@ -109,6 +109,9 @@ createWidget("custom-header-link", {
   },
 
   click() {
+    if (this.site.mobileView) {
+      this.sendWidgetAction("showHeaderLinks"); // in mobile view, close menu on click
+    }
     DiscourseURL.routeTo(this.attrs.url);
   },
 });

@@ -56,6 +56,7 @@ createWidget('custom-header-links', {
             {{attach
               widget="custom-header-link"
               attrs=item
+              showHeaderLinks="showHeaderLinks"
             }}
           {{/each}}
       </ul>
