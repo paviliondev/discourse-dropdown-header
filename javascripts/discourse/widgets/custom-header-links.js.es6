@@ -44,6 +44,9 @@ createWidget('custom-header-links', {
   },
 
   clickOutside() {
+    if (this.site.desktopView) {
+      return;
+    }
     this.sendWidgetAction("toggleHeaderLinks");
   },
 
