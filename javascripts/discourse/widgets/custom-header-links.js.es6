@@ -47,7 +47,10 @@ createWidget('custom-header-links', {
     if (this.site.desktopView) {
       return;
     }
-    this.sendWidgetAction("toggleHeaderLinks");
+
+    if (this.state.showLinks) {
+      this.sendWidgetAction("toggleHeaderLinks");
+    }
   },
 
   template: hbs`
