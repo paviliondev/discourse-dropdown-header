@@ -43,7 +43,7 @@ createWidget('custom-header-links', {
     }
   },
 
-  clickOutside(e) {
+  clickOutside() {
     this.sendWidgetAction("toggleHeaderLinks");
   },
 
