@@ -1,4 +1,4 @@
-@import 'mixins';
+@import "mixins";
 
 .mobile-view {
   .top-level-links {
@@ -32,5 +32,11 @@
     .custom-header-link-desc {
       display: none;
     }
+  }
+
+  .dropdown-header-open {
+    overflow-y: hidden;
+    height: 100vh;
+    position: fixed;
   }
 }

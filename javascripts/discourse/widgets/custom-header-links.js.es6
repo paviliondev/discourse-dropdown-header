@@ -34,8 +34,23 @@ createWidget('custom-header-links', {
     };
   },
 
-  showHeaderLinks() {
+  toggleHeaderLinks() {
     this.state.showLinks = !this.state.showLinks;
+    if (this.state.showLinks) {
+      document.body.classList.add("dropdown-header-open");
+    } else {
+      document.body.classList.remove("dropdown-header-open");
+    }
+  },
+
+  clickOutside() {
+    if (this.site.desktopView) {
+      return;
+    }
+
+    if (this.state.showLinks) {
+      this.sendWidgetAction("toggleHeaderLinks");
+    }
   },
 
   template: hbs`
@@ -44,7 +59,7 @@ createWidget('custom-header-links', {
         {{attach
             widget="button"
             attrs=(hash
-              action="showHeaderLinks"
+              action="toggleHeaderLinks"
               icon="caret-square-down"
             )
         }}
