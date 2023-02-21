@@ -11,6 +11,8 @@
     flex-flow: row wrap;
     align-items: flex-start;
     justify-content: flex-start;
+    overflow: scroll;
+    max-height: 90vh;
 
     li {
       width: 100%;
