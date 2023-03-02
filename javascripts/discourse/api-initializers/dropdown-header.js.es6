@@ -10,7 +10,6 @@ export default apiInitializer("0.11.1", (api) => {
   const links_position =
     settings.links_position === "right"
       ? "header-buttons:before"
-      : "home-logo:after"
       : "header-contents:after";
 
   api.decorateWidget(links_position, (helper) => {
