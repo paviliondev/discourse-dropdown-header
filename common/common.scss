@@ -28,6 +28,10 @@
           transition: transform 0.25s ease;
         }
       }
+      .custom-header-links .top-level-links .custom-header-linknth-of-type(3) {
+        color: #ffffff;
+      
+      }
 
       &:hover {
         color: $main_link_hover_color;
