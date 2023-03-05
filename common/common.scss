@@ -54,8 +54,8 @@
     max-width: 280px;
     list-style: none;
     transform: scale(0);
-    transition: transform 0.2s ease;
-    transition-delay: 0.3s;
+    /*transition: transform 0.2s ease;*/
+    /*transition-delay: 0.3s;*/
 
     &-link {
       color: $dropdown_item_color;
