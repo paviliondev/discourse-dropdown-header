@@ -25,10 +25,8 @@ createWidget('custom-header-links', {
   },
 
   defaultState() {
-    //let showLinks = !this.site.mobileView;
-    let showLinks = true;
-    //const mobileView = this.site.mobileView;
-    const mobileView = false;
+    let showLinks = !this.site.mobileView;
+    const mobileView = this.site.mobileView;
 
     return {
       mobileView,
