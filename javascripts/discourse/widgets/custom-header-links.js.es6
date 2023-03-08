@@ -51,7 +51,8 @@ createWidget('custom-header-links', {
     }
 
     if (this.state.showLinks) {
-      this.sendWidgetAction("toggleHeaderLinks");
+      //this.sendWidgetAction("toggleHeaderLinks");
+      return;
     }
   },
 
