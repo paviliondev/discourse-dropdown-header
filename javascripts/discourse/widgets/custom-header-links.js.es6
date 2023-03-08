@@ -24,15 +24,15 @@ createWidget('custom-header-links', {
     };
   },
 
-  defaultState() {
-    let showLinks = !this.site.mobileView;
-    const mobileView = this.site.mobileView;
+//  defaultState() {
+//    let showLinks = !this.site.mobileView;
+//    const mobileView = this.site.mobileView;
 
-    return {
-      mobileView,
-      showLinks,
-    };
-  },
+//    return {
+//      mobileView,
+//      showLinks,
+//    };
+//  },
 
   toggleHeaderLinks() {
     this.state.showLinks = !this.state.showLinks;
@@ -54,17 +54,17 @@ createWidget('custom-header-links', {
   },
 
   template: hbs`
-    {{#if this.state.mobileView}}
-      <span class="btn-custom-header-dropdown-mobile">
-        {{attach
-            widget="button"
-            attrs=(hash
-              action="toggleHeaderLinks"
-              icon="caret-square-down"
-            )
-        }}
-      </span>
-    {{/if}}
+//    {{#if this.state.mobileView}}
+//      <span class="btn-custom-header-dropdown-mobile">
+//        {{attach
+//            widget="button"
+//            attrs=(hash
+//              action="toggleHeaderLinks"
+//              icon="caret-square-down"
+//            )
+//        }}
+//      </span>
+//    {{/if}}
     {{#if this.state.showLinks}}
       <ul class="top-level-links">
           {{#each transformed.headerLinks as |item|}}
