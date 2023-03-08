@@ -46,7 +46,7 @@ createWidget('custom-header-links', {
   },
 
   clickOutside() {
-    //if (this.site.desktopView) {
+    if (this.site.desktopView) {
       return;
     }
 
