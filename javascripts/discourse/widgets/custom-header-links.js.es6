@@ -45,16 +45,16 @@ createWidget('custom-header-links', {
     }
   },
 
-//  clickOutside() {
-//    if (this.site.desktopView) {
-//      return;
-//    }
+  clickOutside() {
+    if (this.site.desktopView) {
+      return;
+    }
 
-//    if (this.state.showLinks) {
-      //this.sendWidgetAction("toggleHeaderLinks");
-//      return;
-//    }
-//  },
+    if (this.state.showLinks) {
+      this.sendWidgetAction("toggleHeaderLinks");
+      return;
+    }
+  },
 
   template: hbs`
     {{#if this.state.mobileView}}
