@@ -36,25 +36,25 @@ createWidget('custom-header-links', {
     };
   },
 
-  toggleHeaderLinks() {
-    this.state.showLinks = !this.state.showLinks;
-    if (this.state.showLinks) {
-      document.body.classList.add("dropdown-header-open");
-    } else {
-      document.body.classList.remove("dropdown-header-open");
-    }
-  },
+//  toggleHeaderLinks() {
+//    this.state.showLinks = !this.state.showLinks;
+//    if (this.state.showLinks) {
+//      document.body.classList.add("dropdown-header-open");
+//    } else {
+//      document.body.classList.remove("dropdown-header-open");
+//    }
+//  },
 
-  clickOutside() {
-    if (this.site.desktopView) {
-      return;
-    }
+//  clickOutside() {
+//    if (this.site.desktopView) {
+//      return;
+//    }
 
-    if (this.state.showLinks) {
-      this.sendWidgetAction("toggleHeaderLinks");
-      return;
-    }
-  },
+//    if (this.state.showLinks) {
+//      this.sendWidgetAction("toggleHeaderLinks");
+//      return;
+//    }
+//  },
 
   template: hbs`
     {{#if this.state.mobileView}}
