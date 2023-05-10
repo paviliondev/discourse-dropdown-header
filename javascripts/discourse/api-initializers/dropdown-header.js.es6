@@ -10,7 +10,7 @@ export default apiInitializer("0.11.1", (api) => {
   const links_position =
     settings.links_position === "right"
       ? "header-buttons:before"
-      : "header-contents:after";
+      : "below-site-header";
 
   api.decorateWidget(links_position, (helper) => {
     const scrolling = helper.attrs.minimized;
