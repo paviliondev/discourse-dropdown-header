@@ -29,19 +29,6 @@
         }
       }
 
-      &:hover {
-        color: $main_link_hover_color;
-
-        .custom-header-dropdown {
-          transform: scale(1);
-          transition-delay: 0s;
-        }
-
-        .custom-header-link-caret svg {
-          transform: rotate(90deg);
-        }
-      }
-
       &.with-url {
         cursor: pointer;
       }
