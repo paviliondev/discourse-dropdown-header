@@ -25,7 +25,7 @@ createWidget('custom-header-dropdown', {
 
   click() {
     if (this.site.mobileView) {
-      this.sendWidgetAction("showHeaderLinks"); // in mobile view, close menu on click
+      this.sendWidgetAction("toggleDropdown"); // in mobile view, close menu on click
     }
     DiscourseURL.routeTo(this.attrs.url);
   },

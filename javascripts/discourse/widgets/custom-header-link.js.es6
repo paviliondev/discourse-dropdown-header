@@ -9,6 +9,14 @@ createWidget("custom-header-link", {
   tagName: "li.custom-header-link",
   buildKey: (attrs) => `custom-header-link-${attrs.id}`,
 
+  defaultState() {
+    let showDropdown = false;
+
+    return {
+      showDropdown,
+    };
+  },
+
   html(attrs) {
     const iconHTML = buildIconHTML(attrs.icon);
     const titleHTML = h("span.custom-header-link-title", attrs.title);
@@ -51,7 +59,7 @@ createWidget("custom-header-link", {
     };
   },
 
-  buildClasses(attrs) {
+  buildClasses(attrs, state) {
     const classes = [];
 
     if (attrs.url) {
@@ -60,6 +68,10 @@ createWidget("custom-header-link", {
 
     if (attrs.hasDropdown) {
       classes.push("has-dropdown");
+    }
+
+    if (state.showDropdown) {
+      classes.push("show-dropdown");
     }
 
     return classes;
@@ -108,9 +120,18 @@ createWidget("custom-header-link", {
     return h("span.custom-header-link-caret", iconNode("caret-down"));
   },
 
+  clickOutside() {
+    this.state.showDropdown = false;
+    this.scheduleRerender();
+  },
+
+  toggleDropdown() {
+    this.state.showDropdown = !this.state.showDropdown;
+  },
+
   click() {
     if (this.site.mobileView) {
-      this.sendWidgetAction("showHeaderLinks"); // in mobile view, close menu on click
+      this.toggleDropdown();
     }
     DiscourseURL.routeTo(this.attrs.url);
   },

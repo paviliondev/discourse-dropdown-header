@@ -25,8 +25,10 @@ createWidget('custom-header-links', {
   },
 
   defaultState() {
-    let showLinks = !this.site.mobileView;
-    const mobileView = this.site.mobileView;
+    //let showLinks = !this.site.mobileView;
+    let showLinks = true;
+    //const mobileView = this.site.mobileView;
+    const mobileView = false;
 
     return {
       mobileView,
@@ -34,24 +36,25 @@ createWidget('custom-header-links', {
     };
   },
 
-  toggleHeaderLinks() {
-    this.state.showLinks = !this.state.showLinks;
-    if (this.state.showLinks) {
-      document.body.classList.add("dropdown-header-open");
-    } else {
-      document.body.classList.remove("dropdown-header-open");
-    }
-  },
+//  toggleHeaderLinks() {
+//    this.state.showLinks = !this.state.showLinks;
+//    if (this.state.showLinks) {
+//      document.body.classList.add("dropdown-header-open");
+//    } else {
+//      document.body.classList.remove("dropdown-header-open");
+//    }
+//  },
 
-  clickOutside() {
-    if (this.site.desktopView) {
-      return;
-    }
+//  clickOutside() {
+//    if (this.site.desktopView) {
+//      return;
+//    }
 
-    if (this.state.showLinks) {
-      this.sendWidgetAction("toggleHeaderLinks");
-    }
-  },
+//    if (this.state.showLinks) {
+//      this.sendWidgetAction("toggleHeaderLinks");
+//      return;
+//    }
+//  },
 
   template: hbs`
     {{#if this.state.mobileView}}

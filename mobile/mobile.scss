@@ -1,44 +1,22 @@
 @import "mixins";
 
 .mobile-view {
-  .top-level-links {
-    @include dropdown;
-    position: fixed;
-    left: 0;
-    margin: 0;
-    top: var(--header-offset);
-    width: 100%;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    overflow: scroll;
-    max-height: 90vh;
-
-    li {
-      width: 100%;
-
-      @media screen and (min-width: 768px) {
-        width: auto;
+  .custom-header-links {
+    .top-level-links {
+      .custom-header-link {
+        &.show-dropdown {
+          color: $main_link_hover_color;
+  
+          .custom-header-dropdown {
+            transform: scale(1);
+            transition-delay: 0s;
+          }
+  
+          .custom-header-link-caret svg {
+            transform: rotate(90deg);
+          }
+        }
       }
     }
-  }
-
-  .custom-header-dropdown {
-    display: block;
-    position: initial;
-    transform: scale(1);
-    box-shadow: none;
-    margin-top: 1rem;
-    min-width: unset;
-
-    .custom-header-link-desc {
-      display: none;
-    }
-  }
-
-  .dropdown-header-open {
-    overflow-y: hidden;
-    height: 100vh;
-    position: fixed;
   }
 }
