@@ -11,7 +11,9 @@ createWidget("custom-header-link", {
 
   html(attrs) {
     const iconHTML = buildIconHTML(attrs.icon);
-    const titleHTML = h("span.custom-header-link-title", attrs.title);
+    const titleHTML = attrs.url
+      ? h(   "a.custom-header-link-title", attrs.title, {href: attrs.url})
+      : h("span.custom-header-link-title", attrs.title);
     const permissions = this.handleLinkPermissions(attrs);
     const allDropdownItems = settings.dropdown_links
       ? JSON.parse(settings.dropdown_links)
