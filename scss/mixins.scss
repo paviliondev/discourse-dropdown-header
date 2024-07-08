@@ -3,7 +3,7 @@
   background-color: $dropdown_background_color;
   border: 1px solid $dropdown_border_color;
   box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  z-index: z("header") + 1;
   padding: 0.5em;
   top: var(--header-offset);
 }
