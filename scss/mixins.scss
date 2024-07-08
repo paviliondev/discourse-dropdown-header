@@ -5,5 +5,9 @@
   box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
   z-index: z("header") + 1;
   padding: 0.5em;
-  top: var(--header-offset);
+  @if $links_position == "left" {
+    top: calc(var(--header-offset) - 0.8rem);
+  } @else {
+    top: calc(var(--header-offset) - 1.25rem);
+  }
 }

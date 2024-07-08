@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'buttons';
+@import "mixins";
+@import "buttons";
 
 .custom-header-links {
   .top-level-links {
@@ -8,10 +8,11 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin: 0;
 
     .custom-header-link {
       color: $main_link_color;
-      padding-block: 1rem;
+      padding-block: 0.5rem;
       cursor: default;
 
       &-icon {
