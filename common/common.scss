@@ -86,7 +86,7 @@
   display: none;
 }
 
-// maintains suitable spacing when Sign Up buttons are present
-.anon .d-header .sign-up-button {
+// maintains suitable spacing when auth buttons are present
+.anon .d-header .header-buttons:has(.custom-header-links) .auth-buttons {
     margin-left: 1.25em;
 }
