@@ -1,11 +1,3 @@
-@if $links_position == "left" {
-  .home-logo-wrapper-outlet {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-}
-
 .custom-header-links {
   display: flex;
 

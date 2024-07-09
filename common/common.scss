@@ -1,6 +1,14 @@
 @import "mixins";
 @import "buttons";
 
+@if $links_position == "left" {
+  .home-logo-wrapper-outlet {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
 .custom-header-links {
   .top-level-links {
     list-style: none;
