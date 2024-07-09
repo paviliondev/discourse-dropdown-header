@@ -56,7 +56,7 @@
     list-style: none;
     transform: scale(0);
     transition: transform 0.2s ease;
-    transition-delay: 0.3s;
+    transition-delay: 0.1s;
     will-change: transform;
 
     &-link {
@@ -89,5 +89,5 @@
 
 // maintains suitable spacing when auth buttons are present
 .anon .d-header .header-buttons:has(.custom-header-links) .auth-buttons {
-    margin-left: 1.25em;
+  margin-left: 1.25em;
 }
