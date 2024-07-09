@@ -11,12 +11,14 @@ export default class CustomHeaderDropdown extends Component {
   @service router;
 
   @action
-  redirectToUrl(url) {
+  redirectToUrl(url, event) {
     if (this.site.mobileView) {
       this.toggleHeaderLinks();
     }
 
     DiscourseURL.routeTo(url);
+
+    event.stopPropagation();
   }
 
   <template>

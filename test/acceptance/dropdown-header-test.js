@@ -21,8 +21,14 @@ const dropdownLinksSettingFixtures = [
     url: "/chat",
     description: "Discussion",
   },
-  { headerLinkId: 0, title: "Poll", icon: "", url: "/", description: "" },
-  { headerLinkId: 1, title: "Help", icon: "", url: "/", description: "" },
+  {
+    headerLinkId: 0,
+    title: "Poll",
+    icon: "",
+    url: "/categories",
+    description: "",
+  },
+  { headerLinkId: 1, title: "Help", icon: "", url: "/about", description: "" },
 ];
 
 const securitySettingFixture = [{ headerLinkId: 0, title: "staff" }];
@@ -373,7 +379,7 @@ acceptance("Dropdown header - Redirect to URL", function (needs) {
     settings.dropdown_links = "[]";
   });
 
-  test("it redirects to the correct URL", async function (assert) {
+  test("it redirects to the correct URL - Header links", async function (assert) {
     await visit("/");
 
     const linksElements = queryAll(".custom-header-link");
@@ -387,8 +393,16 @@ acceptance("Dropdown header - Redirect to URL", function (needs) {
       fixtures.url,
       `The header link redirects to the correct URL`
     );
+  });
 
-    const dropdownElement = linksElements[0].querySelector(
+  test("it redirects to the correct URL - Dropdown links", async function (assert) {
+    await visit("/");
+
+    const linksElements = queryAll(".custom-header-link");
+    const linkElement = linksElements[0];
+    const fixtures = dropdownLinksSettingFixtures[1];
+
+    const dropdownElement = linkElement.querySelector(
       ".custom-header-dropdown"
     );
     const dropdownLinksElements = dropdownElement.querySelectorAll(
@@ -401,7 +415,32 @@ acceptance("Dropdown header - Redirect to URL", function (needs) {
 
     assert.strictEqual(
       currentURL(),
-      "/",
+      fixtures.url,
+      `The dropdown link redirects to the correct URL`
+    );
+  });
+
+  test("it redirects to the correct URL - Dropdown links with header link", async function (assert) {
+    await visit("/");
+
+    const linksElements = queryAll(".custom-header-link");
+    const linkElement = linksElements[1];
+    const fixtures = dropdownLinksSettingFixtures[2];
+
+    const dropdownElement = linkElement.querySelector(
+      ".custom-header-dropdown"
+    );
+    const dropdownLinksElements = dropdownElement.querySelectorAll(
+      ".custom-header-dropdown-link"
+    );
+
+    const dropdownLinkElement = dropdownLinksElements[0];
+
+    await click(dropdownLinkElement);
+
+    assert.strictEqual(
+      currentURL(),
+      fixtures.url,
       `The dropdown link redirects to the correct URL`
     );
   });
