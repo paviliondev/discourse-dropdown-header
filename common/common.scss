@@ -1,5 +1,13 @@
-@import 'mixins';
-@import 'buttons';
+@import "mixins";
+@import "buttons";
+
+@if $links_position == "left" {
+  .home-logo-wrapper-outlet {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
 
 .custom-header-links {
   .top-level-links {
@@ -8,10 +16,11 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin: 0;
 
     .custom-header-link {
       color: $main_link_color;
-      padding-block: 1rem;
+      padding-block: 0.5rem;
       cursor: default;
 
       &-icon {
@@ -55,7 +64,8 @@
     list-style: none;
     transform: scale(0);
     transition: transform 0.2s ease;
-    transition-delay: 0.3s;
+    transition-delay: 0.1s;
+    will-change: transform;
 
     &-link {
       color: $dropdown_item_color;
@@ -81,11 +91,11 @@
 }
 
 // hide on scroll when nav is positioned to left of header:
-.title .custom-header-links.scrolling {
+.d-header .custom-header-links.scrolling {
   display: none;
 }
 
-// maintains suitable spacing when Sign Up buttons are present
-.anon .d-header .sign-up-button {
-    margin-left: 1.25em;
+// maintains suitable spacing when auth buttons are present
+.anon .d-header .header-buttons:has(.custom-header-links) .auth-buttons {
+  margin-left: 1.25em;
 }
