@@ -25,6 +25,7 @@ export default class CustomHeaderDropdown extends Component {
     <li
       class="custom-header-dropdown-link"
       title={{@item.title}}
+      role="button"
       {{on "click" (fn this.redirectToUrl @item.url)}}
     >
       <CustomIcon @icon={{@item.icon}} />
