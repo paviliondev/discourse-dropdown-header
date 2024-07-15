@@ -14,7 +14,7 @@ export default class CustomIcon extends Component {
   }
 
   get source() {
-    return this.icon.trim();
+    return this.icon?.trim();
   }
 
   <template>
