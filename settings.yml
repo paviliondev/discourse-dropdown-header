@@ -22,6 +22,9 @@ header_links:
         },
         "url": {
           "type": "string"
+        },
+        "newTab": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false
@@ -55,6 +58,9 @@ dropdown_links:
         },
         "description": {
           "type": "string"
+        },
+        "newTab": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false

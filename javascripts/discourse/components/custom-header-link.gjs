@@ -7,7 +7,6 @@ import { inject as service } from "@ember/service";
 import concatClass from "discourse/helpers/concat-class";
 import DiscourseURL from "discourse/lib/url";
 import dIcon from "discourse-common/helpers/d-icon";
-import CustomHeaderDropdown from "./custom-header-dropdown";
 import CustomIcon from "./custom-icon";
 
 export default class CustomHeaderLink extends Component {
@@ -65,12 +64,18 @@ export default class CustomHeaderLink extends Component {
   }
 
   @action
-  redirectToUrl(url) {
+  redirectToUrl(item) {
     if (this.site.mobileView) {
       this.toggleHeaderLinks();
     }
 
-    DiscourseURL.routeTo(url);
+    if (item.newTab) {
+      window.open(item.url, "_blank");
+    } else {
+      DiscourseURL.routeTo(item.url);
+    }
+
+    event.stopPropagation();
   }
 
   <template>
@@ -82,9 +87,7 @@ export default class CustomHeaderLink extends Component {
           (if this.hasDropdown "has-dropdown")
         }}
         title={{@item.title}}
-        {{(if
-          @item.url (modifier on "click" (fn this.redirectToUrl @item.url))
-        )}}
+        {{(if @item.url (modifier on "click" (fn this.redirectToUrl @item)))}}
       >
         <CustomIcon @icon={{@item.icon}} />
         <span class="custom-header-link-title">{{@item.title}}</span>
@@ -98,10 +101,22 @@ export default class CustomHeaderLink extends Component {
         {{#if this.hasDropdown}}
           <ul class="custom-header-dropdown">
             {{#each this.dropdownLinks as |dropdownItem|}}
-              <CustomHeaderDropdown
-                @item={{dropdownItem}}
-                @toggleHeaderLinks={{this.toggleHeaderLinks}}
-              />
+              <li
+                class="custom-header-dropdown-link"
+                title={{dropdownItem.title}}
+                role="button"
+                {{on "click" (fn this.redirectToUrl dropdownItem)}}
+              >
+                <CustomIcon @icon={{dropdownItem.icon}} />
+                <span
+                  class="custom-header-link-title"
+                >{{dropdownItem.title}}</span>
+                {{#if dropdownItem.description}}
+                  <span
+                    class="custom-header-link-desc"
+                  >{{dropdownItem.description}}</span>
+                {{/if}}
+              </li>
             {{/each}}
           </ul>
         {{/if}}

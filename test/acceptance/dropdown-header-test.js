@@ -1,5 +1,6 @@
 import { click, currentURL, visit } from "@ember/test-helpers";
 import { test } from "qunit";
+import sinon from "sinon";
 import {
   acceptance,
   queryAll,
@@ -11,6 +12,7 @@ const headerLinksSettingFixtures = [
   { id: 1, title: "Faq", icon: "globe", url: "/faq" },
   { id: 2, title: "Tos", icon: "", url: "/tos" },
   { id: 3, title: "Privacy", icon: "images.png", url: "/privacy" },
+  { id: 4, title: "Topics", icon: "", url: "/latest", newTab: true },
 ];
 
 const dropdownLinksSettingFixtures = [
@@ -29,6 +31,14 @@ const dropdownLinksSettingFixtures = [
     description: "",
   },
   { headerLinkId: 1, title: "Help", icon: "", url: "/about", description: "" },
+  {
+    headerLinkId: 4,
+    title: "Top",
+    icon: "",
+    url: "/top",
+    description: "",
+    newTab: true,
+  },
 ];
 
 const securitySettingFixture = [{ headerLinkId: 0, title: "staff" }];
@@ -64,7 +74,7 @@ acceptance("Dropdown header - Default", function (needs) {
     const fixtures = headerLinksSettingFixtures[0];
 
     const iconElement = linkElement.querySelector(".custom-header-link-icon");
-    assert.ok(iconElement !== null, `The icon wrapper is rendered`);
+    assert.notStrictEqual(iconElement, null, `The icon wrapper is rendered`);
     assert.ok(
       iconElement
         .querySelector("svg")
@@ -73,9 +83,10 @@ acceptance("Dropdown header - Default", function (needs) {
     );
 
     const titleElement = linkElement.querySelector(".custom-header-link-title");
-    assert.ok(titleElement !== null, `The title wrapper is rendered`);
-    assert.ok(
-      titleElement.textContent.trim() === fixtures.title,
+    assert.notStrictEqual(titleElement, null, `The title wrapper is rendered`);
+    assert.strictEqual(
+      titleElement.textContent.trim(),
+      fixtures.title,
       `The title is rendered`
     );
   });
@@ -86,7 +97,11 @@ acceptance("Dropdown header - Default", function (needs) {
     const dropdownElement = queryAll(".custom-header-link")[0].querySelector(
       ".custom-header-dropdown"
     );
-    assert.ok(dropdownElement !== null, `The dropdown wrapper is rendered`);
+    assert.notStrictEqual(
+      dropdownElement,
+      null,
+      `The dropdown wrapper is rendered`
+    );
 
     const dropdownLinksElements = dropdownElement.querySelectorAll(
       ".custom-header-dropdown-link"
@@ -104,8 +119,9 @@ acceptance("Dropdown header - Default", function (needs) {
     const dropdownIconElement = dropdownLinkElement.querySelector(
       ".custom-header-link-icon"
     );
-    assert.ok(
-      dropdownIconElement !== null,
+    assert.notStrictEqual(
+      dropdownIconElement,
+      null,
       `The dropdown icon wrapper is rendered`
     );
     assert.ok(
@@ -118,24 +134,28 @@ acceptance("Dropdown header - Default", function (needs) {
     const dropdownTitleElement = dropdownLinkElement.querySelector(
       ".custom-header-link-title"
     );
-    assert.ok(
-      dropdownTitleElement !== null,
+    assert.notStrictEqual(
+      dropdownTitleElement,
+      null,
       `The dropdown title wrapper is rendered`
     );
-    assert.ok(
-      dropdownTitleElement.textContent.trim() === fixtures.title,
+    assert.strictEqual(
+      dropdownTitleElement.textContent.trim(),
+      fixtures.title,
       `The dropdown title is rendered`
     );
 
     const dropdownDescElement = dropdownLinkElement.querySelector(
       ".custom-header-link-desc"
     );
-    assert.ok(
-      dropdownDescElement !== null,
+    assert.notStrictEqual(
+      dropdownDescElement,
+      null,
       `The dropdown description wrapper is rendered`
     );
-    assert.ok(
-      dropdownDescElement.textContent.trim() === fixtures.description,
+    assert.strictEqual(
+      dropdownDescElement.textContent.trim(),
+      fixtures.description,
       `The dropdown description is rendered`
     );
   });
@@ -145,13 +165,13 @@ acceptance("Dropdown header - Default", function (needs) {
 
     let linkElement = queryAll(".custom-header-link")[2];
 
-    assert.ok(
-      !linkElement.querySelector("custom-header-link-icon"),
+    assert.notOk(
+      linkElement.querySelector("custom-header-link-icon"),
       "The header links wrapper is not rendered"
     );
 
-    assert.ok(
-      !linkElement.querySelector("custom-header-dropdown"),
+    assert.notOk(
+      linkElement.querySelector("custom-header-dropdown"),
       "The dropdown wrapper is not rendered"
     );
 
@@ -162,12 +182,12 @@ acceptance("Dropdown header - Default", function (needs) {
       ".custom-header-dropdown-link"
     )[1];
 
-    assert.ok(
-      !linkElement.querySelector("custom-header-link-icon"),
+    assert.notOk(
+      linkElement.querySelector("custom-header-link-icon"),
       "The dropdown icon wrapper is not rendered"
     );
-    assert.ok(
-      !linkElement.querySelector("custom-header-link-desc"),
+    assert.notOk(
+      linkElement.querySelector("custom-header-link-desc"),
       "The dropdown description wrapper is not rendered"
     );
   });
@@ -193,7 +213,7 @@ acceptance("Dropdown header - Image URL as icon source", function (needs) {
     const fixtures = headerLinksSettingFixtures[3];
 
     const iconElement = linkElement.querySelector(".custom-header-link-icon");
-    assert.ok(iconElement !== null, `The icon wrapper is rendered`);
+    assert.notStrictEqual(iconElement, null, `The icon wrapper is rendered`);
     assert.ok(
       iconElement.querySelector("img")?.src.includes(fixtures.icon),
       `The icon is rendered`
@@ -222,7 +242,7 @@ acceptance("Dropdown header - Caret icon", function (needs) {
       ".custom-header-link-caret"
     );
 
-    assert.ok(caretElement !== null, `The caret wrapper is rendered`);
+    assert.notStrictEqual(caretElement, null, `The caret wrapper is rendered`);
     assert.ok(
       caretElement
         ?.querySelector("svg")
@@ -241,9 +261,9 @@ acceptance("Dropdown header - Caret icon", function (needs) {
       ".custom-header-link-caret"
     );
 
-    assert.ok(caretElement === null, `The caret wrapper is not rendered`);
-    assert.ok(
-      !caretElement
+    assert.strictEqual(caretElement, null, `The caret wrapper is not rendered`);
+    assert.notOk(
+      caretElement
         ?.querySelector("svg")
         ?.classList.contains("d-icon-caret-down"),
       `The icon is not rendered`
@@ -442,6 +462,35 @@ acceptance("Dropdown header - Redirect to URL", function (needs) {
       currentURL(),
       fixtures.url,
       `The dropdown link redirects to the correct URL`
+    );
+  });
+
+  test("it opens URL in new tab if newTab is true", async function (assert) {
+    const openStub = sinon.stub(window, "open").returns(null);
+
+    await visit("/");
+
+    const linksElements = queryAll(".custom-header-link");
+
+    await click(linksElements[4]);
+
+    assert.true(
+      openStub.calledWith(headerLinksSettingFixtures[4].url, "_blank"),
+      "The dropdown link opens in a new tab"
+    );
+
+    const dropdownElement = linksElements[4].querySelector(
+      ".custom-header-dropdown"
+    );
+    const dropdownLinksElements = dropdownElement.querySelectorAll(
+      ".custom-header-dropdown-link"
+    );
+
+    await click(dropdownLinksElements[0]);
+
+    assert.true(
+      openStub.calledWith(dropdownLinksSettingFixtures[3].url, "_blank"),
+      "The dropdown link opens in a new tab"
     );
   });
 });
