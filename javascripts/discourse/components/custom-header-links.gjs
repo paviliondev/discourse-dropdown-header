@@ -40,7 +40,7 @@ export default class CustomHeaderLinks extends Component {
       {{#if this.site.mobileView}}
         <span class="btn-custom-header-dropdown-mobile">
           <DButton
-            @icon="caret-square-down"
+            @icon="square-caret-down"
             @title={{i18n "custom_header.discord"}}
             @action={{this.toggleHeaderLinks}}
           />
