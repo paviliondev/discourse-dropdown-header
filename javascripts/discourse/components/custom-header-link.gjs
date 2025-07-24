@@ -7,8 +7,8 @@ import { notEmpty } from "@ember/object/computed";
 import { service } from "@ember/service";
 import { and, not } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
+import dIcon from "discourse/helpers/d-icon";
 import DiscourseURL from "discourse/lib/url";
-import dIcon from "discourse-common/helpers/d-icon";
 import CustomIcon from "./custom-icon";
 
 export default class CustomHeaderLink extends Component {
