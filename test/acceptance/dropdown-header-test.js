@@ -3,6 +3,7 @@ import { test } from "qunit";
 import sinon from "sinon";
 import {
   acceptance,
+  query,
   queryAll,
   visible,
 } from "discourse/tests/helpers/qunit-helpers";
@@ -491,6 +492,67 @@ acceptance("Dropdown header - Redirect to URL", function (needs) {
     assert.true(
       openStub.calledWith(dropdownLinksSettingFixtures[3].url, "_blank"),
       "The dropdown link opens in a new tab"
+    );
+  });
+});
+
+acceptance("Dropdown header - Mobile view", function (needs) {
+  needs.mobileView();
+
+  needs.hooks.beforeEach(() => {
+    settings.header_links = JSON.stringify(headerLinksSettingFixtures);
+    settings.dropdown_links = JSON.stringify(dropdownLinksSettingFixtures);
+  });
+
+  needs.hooks.afterEach(() => {
+    settings.header_links = "[]";
+    settings.dropdown_links = "[]";
+  });
+
+  test("it toggles the header dropdown on click", async function (assert) {
+    await visit("/");
+
+    const headerLinkElement = query(".custom-header-links button");
+    await click(headerLinkElement);
+
+    assert.ok(
+      visible(".top-level-links"),
+      "The top header dropdown is visible"
+    );
+
+    const linksElements = queryAll(".custom-header-link");
+    const linkElement = linksElements[0];
+
+    assert.ok(
+      linkElement.classList.contains("is-open"),
+      "The header dropdown is visible initially"
+    );
+
+    await click(linkElement);
+
+    assert.notOk(
+      linkElement.classList.contains("is-open"),
+      "The header dropdown is hidden after click"
+    );
+  });
+
+  test("it doesn't render the caret icon on header link with URL defined", async function (assert) {
+    await visit("/");
+
+    const headerLinkElement = query(".custom-header-links button");
+    await click(headerLinkElement);
+
+    const linksElements = queryAll(".custom-header-link");
+    const caretElement = linksElements[1].querySelector(
+      ".custom-header-link-caret"
+    );
+
+    assert.strictEqual(caretElement, null, `The caret wrapper is not rendered`);
+    assert.notOk(
+      caretElement
+        ?.querySelector("svg")
+        ?.classList.contains("d-icon-caret-down"),
+      `The icon is not rendered`
     );
   });
 });

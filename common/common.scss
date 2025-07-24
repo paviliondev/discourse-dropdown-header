@@ -38,6 +38,24 @@
         }
       }
 
+      &.has-dropdown {
+        &.is-open {
+          .custom-header-link-caret svg {
+            transform: rotate(0deg);
+          }
+        }
+        &:not(.is-open) {
+          .custom-header-link-caret svg {
+            transform: rotate(90deg);
+          }
+        }
+        &:not(.is-open) {
+          .custom-header-dropdown {
+            transform: scale(0);
+          }
+        }
+      }
+
       &:hover {
         color: $main_link_hover_color;
 

@@ -1,9 +1,11 @@
+import { tracked } from "@glimmer/tracking";
 import Component from "@ember/component";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { notEmpty } from "@ember/object/computed";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
+import { and, not } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import DiscourseURL from "discourse/lib/url";
 import dIcon from "discourse-common/helpers/d-icon";
@@ -13,6 +15,8 @@ export default class CustomHeaderLink extends Component {
   @service siteSettings;
   @service site;
   @service currentUser;
+
+  @tracked dropdownOpen = true;
 
   @notEmpty("dropdownLinks") hasDropdown;
 
@@ -48,7 +52,11 @@ export default class CustomHeaderLink extends Component {
   }
 
   get showCaret() {
-    return settings.show_caret_icons && this.hasDropdown;
+    return (
+      settings.show_caret_icons &&
+      this.hasDropdown &&
+      (!this.site.mobileView || !this.item.url)
+    );
   }
 
   get dropdownLinks() {
@@ -64,7 +72,12 @@ export default class CustomHeaderLink extends Component {
   }
 
   @action
-  redirectToUrl(item) {
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  @action
+  redirectToUrl(item, event) {
     if (this.site.mobileView) {
       this.toggleHeaderLinks();
     }
@@ -85,9 +98,14 @@ export default class CustomHeaderLink extends Component {
           "custom-header-link"
           (if @item.url "with-url")
           (if this.hasDropdown "has-dropdown")
+          (if this.dropdownOpen "is-open")
         }}
         title={{@item.title}}
         {{(if @item.url (modifier on "click" (fn this.redirectToUrl @item)))}}
+        {{(if
+          (and (not @item.url) this.site.mobileView this.hasDropdown)
+          (modifier on "click" this.toggleDropdown)
+        )}}
       >
         <CustomIcon @icon={{@item.icon}} />
         <span class="custom-header-link-title">{{@item.title}}</span>
