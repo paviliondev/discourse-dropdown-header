@@ -25,6 +25,7 @@
 
       &-icon {
         margin-right: 0.5rem;
+
         img {
           width: 1.5em;
           height: 1.5em;
@@ -33,8 +34,29 @@
 
       &-caret {
         margin-left: 0.5rem;
+
         svg {
           transition: transform 0.25s ease;
+        }
+      }
+
+      &.has-dropdown {
+        &.is-open {
+          .custom-header-link-caret svg {
+            transform: rotate(0deg);
+          }
+        }
+
+        &:not(.is-open) {
+          .custom-header-dropdown {
+            transform: scale(0);
+            opacity: 0;
+            position: absolute;
+          }
+
+          .custom-header-link-caret svg {
+            transform: rotate(90deg);
+          }
         }
       }
 
@@ -62,6 +84,7 @@
     min-width: 200px;
     max-width: 280px;
     list-style: none;
+    opacity: 1;
     transform: scale(0);
     transition: transform 0.2s ease;
     transition-delay: 0.1s;

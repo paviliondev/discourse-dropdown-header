@@ -3,11 +3,9 @@
   "component": true,
   "about_url": "https://github.com/paviliondev/discourse-dropdown-header",
   "license_url": "https://github.com/paviliondev/discourse-dropdown-header/blob/main/LICENSE.txt",
-  "theme_version": "1.1",
+  "theme_version": "1.2",
   "assets": {},
   "modifiers": {
-    "svg_icons": [
-      "square-caret-down"
-    ]
+    "svg_icons": ["square-caret-down"]
   }
 }

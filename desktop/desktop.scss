@@ -5,7 +5,7 @@
     display: flex;
   }
 
-  @media screen and (max-width: 712px) {
+  @media screen and (width <= 712px) {
     display: none;
   }
 }
